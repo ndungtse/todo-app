@@ -1,23 +1,21 @@
 import React from "react";
-import TodoComp from "./TodoComp";
+import Todo from './TodoComp'
+const TodoList = ({todos,setTodos,filteredTodos, saveLocalTodos}) => {
+    if(!filteredTodos) filteredTodos = []
+    return (
+        <div className="todo-container">
+            <ul className="todo-list">
+              {filteredTodos.map(todo => (
+                  <Todo setTodos={setTodos}
+                   todos={todos}
+                   todo={todo}
+                   key={todo.id} 
+                   text={todo.text}
+                   saveLocalTodos={saveLocalTodos}/>
+              ))}
+            </ul>
+        </div>
+    )
+} 
 
-
-function todoApp({ todos, setTodos, filteredTodos }) {
-  return (
-    <div className="main-cont">
-      <ul className="todo-list">
-        {filteredTodos.map((todo) => (
-          <TodoComp
-            setTodos={setTodos}
-            todos={todos}
-            key={todo.id}
-            todo={todo}
-            text={todo.text}
-          />
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default todoApp;
+export default TodoList
